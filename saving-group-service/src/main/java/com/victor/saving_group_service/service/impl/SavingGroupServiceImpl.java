@@ -12,6 +12,7 @@ import com.victor.saving_group_service.repository.GroupMemberRepository;
 import com.victor.saving_group_service.repository.SavingGroupRepository;
 import com.victor.saving_group_service.service.SavingGroupService;
 import com.victor.saving_group_service.service.WalletService;
+import java.security.SecureRandom;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -242,7 +243,7 @@ public class SavingGroupServiceImpl implements SavingGroupService {
 
         GroupInvite invite = GroupInvite.builder()
                 .group(group)
-                .inviteCode(String.format("%06d", new Random().nextInt(1000000)))
+                .inviteCode(String.format("%06d", new SecureRandom().nextInt(1000000)))
                 .invitedUserId(request.getInvitedUserId())
                 .invitedByUserId(request.getInvitedByUserId())
                 .minimumAmountRequired(request.getMinimumAmountRequired())
